@@ -100,9 +100,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\CasparCG .NET_Framework_1.0.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Svt.Caspar.Controls.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Svt.Caspar.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Svt.Network.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

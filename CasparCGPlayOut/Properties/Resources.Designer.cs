@@ -59,5 +59,45 @@ namespace CasparCGPlayOut.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CasparCG__NET_Framework_1_0_0 {
+            get {
+                object obj = ResourceManager.GetObject("CasparCG__NET_Framework_1_0_0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Svt_Caspar {
+            get {
+                object obj = ResourceManager.GetObject("Svt_Caspar", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Svt_Caspar_Controls {
+            get {
+                object obj = ResourceManager.GetObject("Svt_Caspar_Controls", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Svt_Network {
+            get {
+                object obj = ResourceManager.GetObject("Svt_Network", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
