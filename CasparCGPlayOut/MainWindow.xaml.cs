@@ -27,7 +27,7 @@ namespace CasparPlayOut
         CasparDevice cd = new CasparDevice();
         //CasparItem ci = new CasparItem(string.Empty);
         //Channel ch;
-        string action = "", channel = "", layer = "", media = "", loop = "";
+        string playState = "", channel = "", layer = "", media = "", loop = "";
 
 
         public MainWindow()
@@ -170,76 +170,76 @@ namespace CasparPlayOut
         }
         private void bt_control_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            var bt = sender as System.Windows.Controls.Button;
-
-            action = bt.Content.ToString().ToLower().Trim();
-            channel = cmb_channel.SelectedItem.ToString();
-            layer = cmb_layer.Text;
-            if (lbx_video.SelectedIndex != -1)
-                media = lbx_video.SelectedItem.ToString();
-            else
-                media = "";
-            loop = "";
-
-            bt_pause.Content = "Pause";
-            bt_pause.IsEnabled = false;
-
-            if (action == "load")
+            try
             {
-                if (media != "")
+                var bt = sender as System.Windows.Controls.Button;
+
+                playState = bt.Content.ToString().ToLower().Trim();
+                channel = cmb_channel.SelectedItem.ToString();
+                layer = cmb_layer.Text;
+                if (lbx_video.SelectedIndex != -1)
+                    media = lbx_video.SelectedItem.ToString();
+                else
+                    media = "";
+                loop = "";
+
+                bt_pause.Content = "Pause";
+                bt_pause.IsEnabled = false;
+
+                if (playState == "load")
                 {
-                    cd_send_string(action, channel, layer, media, loop);
+                    if (media != "")
+                    {
+                        cd_send_string(playState, channel, layer, media, loop);
+                    }
                 }
-            }
-            else if (action == "play")
-            {
-                if (media != "")
+                else if (playState == "play")
                 {
-                    loop = "loop";
-                    cd_send_string(action, channel, layer, media, loop);
+                    if (media != "")
+                    {
+                        loop = "loop";
+                        cd_send_string(playState, channel, layer, media, loop);
+                        bt_pause.IsEnabled = true;
+                    }
+                }
+                else if (playState == "pause")
+                {
+                    cd_send_string(playState, channel, layer, media, loop);
+                    bt.Content = "Resume";
                     bt_pause.IsEnabled = true;
                 }
-            }
-            else if (action == "pause")
-            {
-                cd_send_string(action, channel, layer, media, loop);
-                bt.Content = "Resume";
-                bt_pause.IsEnabled = true;
-            }
-            else if (action == "resume")
-            {
-                cd_send_string(action, channel, layer, media, loop);
-                bt_pause.IsEnabled = true;
-            }
-            else if (action == "stop")
-            {
-                cd_send_string(action, channel, layer, media, loop);
-            }
-            else if (action == "clear")
-            {
-                layer = "";
-                cd_send_string(action, channel, layer, media, loop);
-            }
+                else if (playState == "resume")
+                {
+                    cd_send_string(playState, channel, layer, media, loop);
+                    bt_pause.IsEnabled = true;
+                }
+                else if (playState == "stop")
+                {
+                    cd_send_string(playState, channel, layer, media, loop);
+                }
+                else if (playState == "clear")
+                {
+                    layer = "";
+                    cd_send_string(playState, channel, layer, media, loop);
+                }
 
 
-            ////ci = new CasparItem(-1, "xsmall");
-            //ci.Clipname = "xsmall";
-            //ci.VideoLayer = 10;
-            //ci.Transition.Duration = 10;
-            //ci.Loop = true;
+                ////ci = new CasparItem(-1, "xsmall");
+                //ci.Clipname = "xsmall";
+                //ci.VideoLayer = 10;
+                //ci.Transition.Duration = 10;
+                //ci.Loop = true;
 
-            //ch = cd.Channels[0];
-            //ch.Load(ci);
-            //ch.Play(10);
+                //ch = cd.Channels[0];
+                //ch.Load(ci);
+                //ch.Play(10);
 
-            //cd.SendString("play 1-10 xsmall loop");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "bt_control_Click");
-            //}
+                //cd.SendString("play 1-10 xsmall loop");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "bt_control_Click");
+            }
         }
         private void cd_send_string(string action, string channel, string layer, string media, string loop)
         {
