@@ -124,10 +124,4 @@
   <data name="Svt_Caspar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Svt.Caspar.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Svt_Caspar_Controls" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Svt.Caspar.Controls.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Svt_Network" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Svt.Network.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

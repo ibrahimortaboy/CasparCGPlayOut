@@ -1,5 +1,5 @@
-﻿using Svt.Caspar;
-using Svt.Network;
+﻿using Casparcg.Core.Device;
+using Casparcg.Core.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -147,7 +147,7 @@ namespace CasparPlayOut
                 //lv_video.ItemsSource = MyList;
                 //lv_video.Items.Add(MyList.ToArray());
 
-                //MessageBox.Show(cd.Mediafiles[66].Size.ToString());
+                MessageBox.Show(cd.Mediafiles[66].FullName.ToString() +"\n"+ cd.Mediafiles[66].Timecode.ToString());
 
             }
             catch (Exception ex)

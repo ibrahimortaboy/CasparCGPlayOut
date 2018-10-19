@@ -28,12 +28,12 @@
                 <ListView x:Name="lv_video" Margin="0,25,0,0">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="320" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}" />
                             <GridViewColumn Header="Folder" Width="100" DisplayMemberBinding="{Binding Folder}" />
                             <GridViewColumn Header="Type" Width="50" DisplayMemberBinding="{Binding Type}" />
+                            <GridViewColumn Header="Duration" Width="80" DisplayMemberBinding="{Binding Timecode}" />
                             <GridViewColumn Header="Size" Width="50" DisplayMemberBinding="{Binding Size}" />
                             <!--<GridViewColumn Header="Duration" Width="60" DisplayMemberBinding="{Binding Duration, StringFormat=hh\\:mm\\:ss}" />-->
-                            <!--<GridViewColumn Header="Fps" Width="80" DisplayMemberBinding="{Binding Fps}" />-->
                         </GridView>
                     </ListView.View>
                 </ListView>

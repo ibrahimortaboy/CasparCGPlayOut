@@ -79,25 +79,5 @@ namespace CasparCGPlayOut.Properties {
                 return ((byte[])(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Svt_Caspar_Controls {
-            get {
-                object obj = ResourceManager.GetObject("Svt_Caspar_Controls", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Svt_Network {
-            get {
-                object obj = ResourceManager.GetObject("Svt_Network", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

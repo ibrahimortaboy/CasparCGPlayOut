@@ -35,13 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Svt.Caspar, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Casparcg.Core.Device, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Svt.Caspar.dll</HintPath>
+      <HintPath>Resources\Casparcg.Core.Device.dll</HintPath>
     </Reference>
-    <Reference Include="Svt.Network, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Casparcg.Core.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Svt.Network.dll</HintPath>
+      <HintPath>Resources\Casparcg.Core.Network.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -93,6 +93,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -100,19 +101,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\CasparCG .NET_Framework_1.0.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Svt.Caspar.Controls.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Svt.Caspar.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Svt.Network.dll" />
+    <Content Include="Resources\Casparcg.Core.Device.dll" />
+    <Content Include="Resources\Casparcg.Core.Network.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
