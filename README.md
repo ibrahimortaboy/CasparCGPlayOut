@@ -1,2 +1,2 @@
 # CasparCGPlayOut
-CasparCG PlayOut 
+CasparCG based PlayOut client. 
