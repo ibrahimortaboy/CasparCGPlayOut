@@ -23,7 +23,6 @@ namespace CasparPlayOut
     /// </summary>
     public partial class MainWindow : Window
     {
-
         CasparDevice cd = new CasparDevice();
         //CasparItem ci = new CasparItem(string.Empty);
         //Channel ch;
@@ -139,14 +138,16 @@ namespace CasparPlayOut
                 while (cd.Channels.Count <= 0);
 
                 // cd media read.
-                txb_videoCount.Text = cd.Mediafiles.Count.ToString();
+                lb_videoCount.Content = cd.Mediafiles.Count.ToString();
 
                 Thread.Sleep(100);
                 System.Windows.Forms.Application.DoEvents();
 
-                lbx_video.ItemsSource = cd.Mediafiles;
-                //lbx_video.ItemsSource = MyList;
-                //lbx_video.Items.Add(MyList.ToArray());
+                lv_video.ItemsSource = cd.Mediafiles;
+                //lv_video.ItemsSource = MyList;
+                //lv_video.Items.Add(MyList.ToArray());
+
+                //MessageBox.Show(cd.Mediafiles[66].Size.ToString());
 
             }
             catch (Exception ex)
@@ -160,8 +161,8 @@ namespace CasparPlayOut
             {
                 txb_version.Text = "";
                 cmb_channel.Items.Clear();
-                txb_videoCount.Text = "";
-                lbx_video.ItemsSource = null;
+                lb_videoCount.Content = "";
+                lv_video.ItemsSource = null;
             }
             catch (Exception ex)
             {
@@ -177,8 +178,8 @@ namespace CasparPlayOut
                 playState = bt.Content.ToString().ToLower().Trim();
                 channel = cmb_channel.SelectedItem.ToString();
                 layer = cmb_layer.Text;
-                if (lbx_video.SelectedIndex != -1)
-                    media = lbx_video.SelectedItem.ToString();
+                if (lv_video.SelectedIndex != -1)
+                    media = lv_video.SelectedItem.ToString();
                 else
                     media = "";
                 loop = "";
@@ -216,6 +217,7 @@ namespace CasparPlayOut
                 else if (playState == "stop")
                 {
                     cd_send_string(playState, channel, layer, media, loop);
+                    //cd.Channels[Convert.ToInt32(channel)].Stop(Convert.ToInt32(layer));
                 }
                 else if (playState == "clear")
                 {

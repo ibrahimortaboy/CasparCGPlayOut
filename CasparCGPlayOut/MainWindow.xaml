@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CasparCG PlayOut" Height="400" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
-        <Grid x:Name="gr_connect" VerticalAlignment="Top">
+        <Grid x:Name="gr_connect" VerticalAlignment="Top" Margin="5,0,0,0">
             <StackPanel x:Name="sp_connect" Orientation="Horizontal" Margin="0,0,105,0">
                 <Label Content="Server" VerticalContentAlignment="Center" Padding="0" Margin="0,0,5,0"/>
                 <TextBox x:Name="txb_server" TextWrapping="Wrap" Text="127.0.0.1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100"/>
@@ -21,8 +21,22 @@
         </Grid>
         <Grid x:Name="gr_control" Margin="0,25,0,0" IsEnabled="False">
             <Grid Margin="0,0,0,25">
-                <TextBox x:Name="txb_videoCount" TextWrapping="Wrap" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,3,0,0"/>
-                <ListBox x:Name="lbx_video" Margin="0,25,0,0"/>
+                <Grid VerticalAlignment="Top" Height="24">
+                    <Label Content="Media Files Count :" HorizontalAlignment="Left"/>
+                    <Label x:Name="lb_videoCount" Content="" HorizontalAlignment="Left" Margin="110,0,0,0"/>
+                </Grid>
+                <ListView x:Name="lv_video" Margin="0,25,0,0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="320" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Folder" Width="100" DisplayMemberBinding="{Binding Folder}" />
+                            <GridViewColumn Header="Type" Width="50" DisplayMemberBinding="{Binding Type}" />
+                            <GridViewColumn Header="Size" Width="50" DisplayMemberBinding="{Binding Size}" />
+                            <!--<GridViewColumn Header="Duration" Width="60" DisplayMemberBinding="{Binding Duration, StringFormat=hh\\:mm\\:ss}" />-->
+                            <!--<GridViewColumn Header="Fps" Width="80" DisplayMemberBinding="{Binding Fps}" />-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
             <Grid VerticalAlignment="Bottom">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
