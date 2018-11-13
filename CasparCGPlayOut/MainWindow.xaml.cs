@@ -121,6 +121,7 @@ namespace CasparPlayOut
                     elp_connect.Fill = new SolidColorBrush(Colors.LightGreen);
 
                     txb_version.Text = cd.Version.ToString();
+                    lb_mediaCount.Content = cd.Mediafiles.Count.ToString();
 
                     for (int i = 0; i < cd.Channels.Count; i++)
                     {
@@ -160,7 +161,7 @@ namespace CasparPlayOut
 
                 txb_version.Text = "";
                 cmb_channel.Items.Clear();
-                lb_videoCount.Content = "";
+                lb_mediaCount.Content = "";
                 lv_video.ItemsSource = null;
             }
             catch (Exception ex)
