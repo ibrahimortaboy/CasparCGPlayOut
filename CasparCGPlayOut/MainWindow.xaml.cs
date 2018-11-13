@@ -49,6 +49,15 @@ namespace CasparPlayOut
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            string tc = "00:00:00:126";
+            var ii = tc.IndexOf(':');
+            ii = tc.IndexOf(':', ii + 1);
+            ii = tc.IndexOf(':', ii + 1);
+            tc = tc.Substring(0,ii);
+            //System.Windows.MessageBox.Show(tc);
+
+
+
             bt_connect.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
         }
 
@@ -56,11 +65,8 @@ namespace CasparPlayOut
         void caspar_Connected(object sender, NetworkEventArgs e)
         {
             cd.RefreshMediafiles();
-            cd.RefreshDatalist();
-
+            //cd.RefreshDatalist();
             //MessageBox.Show("Caspar AMCP Client Connected");
-
-
         }
         void caspar_Disconnected(object sender, NetworkEventArgs e)
         {
@@ -71,7 +77,6 @@ namespace CasparPlayOut
             //MessageBox.Show("Caspar AMCP Client Failed Connected");
         }
 
-
         private void bt_connect_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -81,26 +86,12 @@ namespace CasparPlayOut
                 if (!cd.IsConnected)
                 {
                     cd.Connect(txb_server.Text, int.Parse(txb_port.Text));
-
-                    bt_connect.IsEnabled = true;
-                    bt_connect.Content = "Disconnect";
-                    elp_connect.Fill = new SolidColorBrush(Colors.LightGreen);
-                    sp_connect.IsEnabled = false;
-                    gr_control.IsEnabled = true;
-
-                    cd_read_version_channel_media();
+                    cd_connected();
                 }
                 else
                 {
                     cd.Disconnect();
-
-                    bt_connect.IsEnabled = true;
-                    bt_connect.Content = "Connect";
-                    elp_connect.Fill = new SolidColorBrush(Colors.White);
-                    sp_connect.IsEnabled = true;
-                    gr_control.IsEnabled = false;
-
-                    cd_cleaar_version_channel_media();
+                    cd_disconnected();
                 }
             }
             catch (Exception ex)
@@ -108,25 +99,28 @@ namespace CasparPlayOut
                 MessageBox.Show(ex.Message, "bt_connect_Click");
             }
         }
-        private void cd_read_version_channel_media()
+        private void cd_connected()
         {
             try
             {
-                // cd version read.
-                do
+                for (int x = 0; x < 50; x++)
                 {
                     Thread.Sleep(100);
                     System.Windows.Forms.Application.DoEvents();
+                    if (cd.IsConnected)
+                        break;
+                }
+
+                if (cd.IsConnected)
+                {
+                    sp_connect.IsEnabled = false;
+                    gr_control.IsEnabled = true;
+
+                    bt_connect.IsEnabled = true;
+                    bt_connect.Content = "Disconnect";
+                    elp_connect.Fill = new SolidColorBrush(Colors.LightGreen);
 
                     txb_version.Text = cd.Version.ToString();
-                }
-                while (cd.Version.ToString().ToLower() == "unknown");
-
-                // cd channel read.
-                do
-                {
-                    Thread.Sleep(100);
-                    System.Windows.Forms.Application.DoEvents();
 
                     for (int i = 0; i < cd.Channels.Count; i++)
                     {
@@ -134,31 +128,36 @@ namespace CasparPlayOut
                     }
                     if (cmb_channel.HasItems)
                         cmb_channel.SelectedIndex = 0;
+
+                    lv_video.ItemsSource = cd.Mediafiles;
+                    //cd.RefreshMediafiles();
+                    ////lv_video.ItemsSource = MyList;
+                    ////lv_video.Items.Add(MyList.ToArray());
+
+                    //MessageBox.Show(cd.Mediafiles[66].FullName.ToString() +"\n"+ cd.Mediafiles[66].Timecode.ToString());
                 }
-                while (cd.Channels.Count <= 0);
-
-                // cd media read.
-                lb_videoCount.Content = cd.Mediafiles.Count.ToString();
-
-                Thread.Sleep(100);
-                System.Windows.Forms.Application.DoEvents();
-
-                lv_video.ItemsSource = cd.Mediafiles;
-                //lv_video.ItemsSource = MyList;
-                //lv_video.Items.Add(MyList.ToArray());
-
-                //MessageBox.Show(cd.Mediafiles[66].FullName.ToString() +"\n"+ cd.Mediafiles[66].Timecode.ToString());
-
+                else
+                {
+                    System.Windows.MessageBox.Show("Caspar AMCP Client Failed Connected.");
+                    bt_connect.IsEnabled = true;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "cd_read_channel_file");
+                System.Windows.MessageBox.Show(ex.Message, "cg_connected");
             }
         }
-        private void cd_cleaar_version_channel_media()
+        private void cd_disconnected()
         {
             try
             {
+                sp_connect.IsEnabled = true;
+                gr_control.IsEnabled = false;
+
+                bt_connect.IsEnabled = true;
+                bt_connect.Content = "Connect";
+                elp_connect.Fill = new SolidColorBrush(Colors.White);
+
                 txb_version.Text = "";
                 cmb_channel.Items.Clear();
                 lb_videoCount.Content = "";
@@ -166,9 +165,10 @@ namespace CasparPlayOut
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "cd_cleaar_channel_file");
+                MessageBox.Show(ex.Message, "cd_disconnected");
             }
         }
+
         private void bt_control_Click(object sender, RoutedEventArgs e)
         {
             try
